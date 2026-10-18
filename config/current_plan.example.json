@@ -1,0 +1,11 @@
+{
+  "status": "Aktywny plan",
+  "tasks": [
+    {
+      "name": "Przykładowe zadanie",
+      "prompt": "Odczytaj README.md i podsumuj jego zawartość.",
+      "allowed_tools": ["read_text"],
+      "completed": false
+    }
+  ]
+}

@@ -29,9 +29,14 @@ class AgentTests(unittest.TestCase):
 
     def test_read_text_cannot_escape_workspace(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
+            outside = Path(directory).parent / f"{Path(directory).name}-outside.txt"
+            outside.write_text("not allowed", encoding="utf-8")
             tools = LocalMCPTools(directory)
-            with self.assertRaises(ToolError):
-                tools.call_tool("read_text", {"path": "../outside"}, ("read_text",))
+            result = tools.call_tool(
+                "read_text", {"path": f"../{outside.name}"}, ("read_text",)
+            )
+            self.assertTrue(result.is_error)
+            outside.unlink()
 
 
 if __name__ == "__main__":
