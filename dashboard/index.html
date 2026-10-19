@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a22">
+    <title>Apka — dashboard planu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="dashboard.js" defer></script>
+  </head>
+  <body>
+    <main class="layout">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">APKA · PLAN AGENTA</p>
+          <h1>Dashboard planu</h1>
+          <p id="agent-description" class="muted"></p>
+          <details class="agent-details">
+            <summary>Instrukcje agenta</summary>
+            <p id="agent-instructions" class="muted"></p>
+          </details>
+        </div>
+        <label class="button upload-button">
+          Wczytaj plan JSON
+          <input id="plan-file" type="file" accept="application/json,.json">
+        </label>
+      </header>
+
+      <p id="notice" class="notice" role="status" aria-live="polite"></p>
+
+      <section class="kpis" aria-label="Podsumowanie planu">
+        <article class="card kpi"><span>Wszystkie zadania</span><strong id="total-tasks">0</strong></article>
+        <article class="card kpi"><span>Ukończone</span><strong id="completed-tasks">0</strong></article>
+        <article class="card kpi"><span>Postęp</span><strong id="completion-rate">0%</strong></article>
+        <article class="card kpi"><span>Narzędzia</span><strong id="tool-count">0</strong></article>
+      </section>
+
+      <section class="charts">
+        <article class="card chart-card">
+          <div class="section-heading"><div><p class="eyebrow">STATUS</p><h2>Realizacja zadań</h2></div></div>
+          <div class="completion">
+            <div id="completion-ring" class="ring" role="img" aria-label="0% zadań ukończonych">
+              <div class="ring-label"><strong id="ring-rate">0%</strong><span>ukończone</span></div>
+            </div>
+            <div class="legend">
+              <span><i class="dot done"></i> Ukończone <b id="legend-completed">0</b></span>
+              <span><i class="dot pending"></i> Oczekujące <b id="legend-pending">0</b></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card chart-card">
+          <div class="section-heading"><div><p class="eyebrow">NARZĘDZIA</p><h2>Użycie według zadań</h2></div></div>
+          <div id="tool-chart" class="bar-chart" aria-label="Użycie dozwolonych narzędzi"></div>
+        </article>
+      </section>
+
+      <section class="card tasks-section">
+        <div class="section-heading task-heading">
+          <div><p class="eyebrow">PLAN</p><h2>Zadania</h2></div>
+          <label class="filter-label" for="task-filter">Filtruj
+            <select id="task-filter">
+              <option value="all">Wszystkie</option>
+              <option value="pending">Oczekujące</option>
+              <option value="completed">Ukończone</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Zadanie</th><th>Status</th><th>Dozwolone narzędzia</th><th>Długość promptu</th></tr></thead>
+            <tbody id="task-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card chart-card prompt-section">
+        <div class="section-heading"><div><p class="eyebrow">ZŁOŻONOŚĆ</p><h2>Długość promptu</h2><p class="muted">Liczba znaków jako przybliżenie złożoności zadania.</p></div></div>
+        <div id="prompt-chart" class="bar-chart prompt-chart" aria-label="Długość promptu dla zadań"></div>
+      </section>
+
+      <footer><span id="plan-status"></span><span id="agent-name">System-Agent</span><span>Wersja <b id="plan-version">1.0</b></span></footer>
+    </main>
+  </body>
+</html>
