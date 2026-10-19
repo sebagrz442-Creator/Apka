@@ -1,0 +1,10 @@
+name: local-example
+interval_seconds: 300
+max_iterations: 5
+allowed_tools:
+  - echo
+  - read_text
+  - utc_time
+steps:
+  - name: inspect
+    prompt: "Check the task requested by the operator. Use only the configured local tools, and finish when complete."

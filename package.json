@@ -1,0 +1,14 @@
+{
+  "name": "ai-agent-planner-app",
+  "version": "1.0.0",
+  "description": "Zautomatyzowana aplikacja oparta na planach i Copilot SDK",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "agent:run": "python3 src/runner.py"
+  },
+  "dependencies": {
+    "@github/copilot-sdk": "^1.0.22"
+  }
+}
