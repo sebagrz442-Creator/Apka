@@ -26,6 +26,20 @@ Copy `config/current_plan.example.json` to `~/config/current_plan.json` to get
 started. `python runner.py --config config/sample.yaml --once` runs the
 standalone Python/Copilot CLI plan runner instead.
 
+## Local dashboard
+
+Run the static dashboard without installing additional packages:
+
+```sh
+python3 -m http.server 8000 --directory dashboard
+```
+
+Open `http://localhost:8000` on the same device. It starts with local sample
+data; use **Wczytaj plan JSON** to select an existing `current_plan.json`.
+Imported plans are read in the browser and are not uploaded or saved by the
+dashboard. The dashboard summarizes task completion and allowed tools, and
+uses prompt character count as a lightweight complexity proxy.
+
 Model access is opt-in:
 task prompts, tool arguments, and returned local file contents may be sent to
 Copilot. Review the plan and data before enabling it. The CLI is launched without
