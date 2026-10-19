@@ -1,0 +1,24 @@
+name: AI Agent Automation
+
+on:
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  copilot-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Uruchom Copilot CLI / Agent workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Agent AI przetwarza kontekst repozytorium..."
+          # Tutaj następuje wywołanie logiki agentowej lub skryptu integracyjnego
